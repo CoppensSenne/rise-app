@@ -1,6 +1,9 @@
-properties([pipelineTriggers([pollSCM("* * * * *")])])
+properties([
+    disableConcurrentBuilds(),
+    pipelineTriggers([pollSCM("* * * * *")])
+])
 
-properties([pipelineTriggers([pollSCM("* * * * *")])])
+
 
 node {
     stage('Checkout') {
