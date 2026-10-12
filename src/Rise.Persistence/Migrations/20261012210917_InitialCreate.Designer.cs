@@ -12,7 +12,7 @@ using Rise.Persistence;
 namespace Rise.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20261012210154_InitialCreate")]
+    [Migration("20261012210917_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -33,8 +33,7 @@ namespace Rise.Persistence.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasMaxLength(4000)
-                        .HasColumnType("varchar(4000)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
@@ -62,12 +61,10 @@ namespace Rise.Persistence.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasMaxLength(4000)
-                        .HasColumnType("varchar(4000)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ClaimValue")
-                        .HasMaxLength(4000)
-                        .HasColumnType("varchar(4000)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
@@ -92,8 +89,7 @@ namespace Rise.Persistence.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasMaxLength(4000)
-                        .HasColumnType("varchar(4000)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -117,19 +113,16 @@ namespace Rise.Persistence.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("PasswordHash")
-                        .HasMaxLength(4000)
-                        .HasColumnType("varchar(4000)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("PhoneNumber")
-                        .HasMaxLength(4000)
-                        .HasColumnType("varchar(4000)");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("SecurityStamp")
-                        .HasMaxLength(4000)
-                        .HasColumnType("varchar(4000)");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("tinyint(1)");
@@ -159,12 +152,10 @@ namespace Rise.Persistence.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasMaxLength(4000)
-                        .HasColumnType("varchar(4000)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ClaimValue")
-                        .HasMaxLength(4000)
-                        .HasColumnType("varchar(4000)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -189,8 +180,7 @@ namespace Rise.Persistence.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasMaxLength(4000)
-                        .HasColumnType("varchar(4000)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -236,8 +226,7 @@ namespace Rise.Persistence.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Value")
-                        .HasMaxLength(4000)
-                        .HasColumnType("varchar(4000)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
@@ -259,8 +248,7 @@ namespace Rise.Persistence.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(4000)
-                        .HasColumnType("varchar(4000)");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()

@@ -52,5 +52,20 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> opts) :
                 property.SetMaxLength(255);
             }
         }
+    
+        // MariaDB: max 65535 bytes per rij. Lange strings (geen sleutels) worden longtext.
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        {
+            foreach (var property in entityType.GetProperties()
+                         .Where(p => p.ClrType == typeof(string)))
+            {
+                var maxLength = property.GetMaxLength();
+                if (maxLength is null || maxLength >= 1000)
+                {
+                    property.SetMaxLength(null);
+                    property.SetColumnType("longtext");
+                }
+            }
+        }
     }
 }
