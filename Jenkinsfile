@@ -1,5 +1,7 @@
 properties([pipelineTriggers([pollSCM("* * * * *")])])
 
+properties([pipelineTriggers([pollSCM("* * * * *")])])
+
 node {
     stage('Checkout') {
         checkout scm
