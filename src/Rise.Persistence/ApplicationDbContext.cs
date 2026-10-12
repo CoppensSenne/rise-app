@@ -1,3 +1,4 @@
+using System.Linq;
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -36,5 +37,20 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> opts) :
         base.OnModelCreating(modelBuilder);
         // Applying all types of IEntityTypeConfiguration in the Persistence project.
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+    
+        // MariaDB: beperk string-sleutels (max 3072 bytes, utf8mb4 = 4 bytes per teken)
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        {
+            var keyProperties = entityType.GetKeys().SelectMany(k => k.Properties)
+                .Concat(entityType.GetForeignKeys().SelectMany(f => f.Properties))
+                .Concat(entityType.GetIndexes().SelectMany(i => i.Properties))
+                .Where(p => p.ClrType == typeof(string))
+                .Distinct();
+
+            foreach (var property in keyProperties)
+            {
+                property.SetMaxLength(255);
+            }
+        }
     }
 }
