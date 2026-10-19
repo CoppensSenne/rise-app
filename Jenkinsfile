@@ -22,7 +22,7 @@ node {
             -e MARIADB_ROOT_PASSWORD=sekrit \
             -e MARIADB_DATABASE=rise_db \
             -e MARIADB_USER=rise_usr \
-            -e MARIADB_PASSWORD=letmeinplz \
+            -e MARIADB_PASSWORD=A1b2C3! \
             -v rise-db-data:/var/lib/mysql \
             mariadb:11.4
         else
@@ -40,7 +40,7 @@ node {
     stage('Deploy') {
         sh '''
         docker run -d --name riseapp --network rise-net -p 8082:8080 \
-          -e "ConnectionStrings__DatabaseConnection=Server=risedb;Port=3306;Database=rise_db;User=rise_usr;Password=letmeinplz;" \
+          -e "ConnectionStrings__DatabaseConnection=Server=risedb;Port=3306;Database=rise_db;User=rise_usr;Password=A1b2C3;" \
           -e ASPNETCORE_ENVIRONMENT=Development \
           riseapp:latest
         '''
