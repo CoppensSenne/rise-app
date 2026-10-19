@@ -40,7 +40,7 @@ node {
     stage('Deploy') {
         sh '''
         docker run -d --name riseapp --network rise-net -p 8082:8080 \
-          -e "ConnectionStrings__DatabaseConnection=Server=risedb;Port=3306;Database=rise_db;User=rise_usr;Password=A1b2C3;" \
+          -e "ConnectionStrings__DatabaseConnection=Server=risedb;Port=3306;Database=rise_db;User=rise_usr;Password=A1b2C3!;" \
           -e ASPNETCORE_ENVIRONMENT=Development \
           riseapp:latest
         '''
