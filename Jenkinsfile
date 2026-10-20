@@ -1,6 +1,6 @@
 properties([
     disableConcurrentBuilds(),
-    pipelineTriggers([pollSCM("* * * * *")])
+    pipelineTriggers([pollSCM("H/2 * * * *")])
 ])
 
 
