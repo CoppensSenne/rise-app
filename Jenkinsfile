@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 properties([
     disableConcurrentBuilds(),
     pipelineTriggers([pollSCM("H/2 * * * *")])
@@ -57,7 +56,7 @@ node {
         '''
     }
 }
-=======
+
 pipeline {
   agent any
   environment {
@@ -92,4 +91,4 @@ pipeline {
     }
   }
 }
->>>>>>> ea66ad8 (Add Jenkins pipeline)
+
